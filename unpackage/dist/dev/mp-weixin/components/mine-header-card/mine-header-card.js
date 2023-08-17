@@ -23,6 +23,15 @@ const _sfc_main = {
   methods: {
     handleArrowClick() {
       console.log("handle arrow click");
+      common_vendor.wx$1.getUserProfile({
+        desc: "用于完善会员资料",
+        success: (res) => {
+          console.log("getUserProfile res: ", res);
+        },
+        fail: (err) => {
+          console.log("getUserProfile err: ", err);
+        }
+      });
     }
   }
 };

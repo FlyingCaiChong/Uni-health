@@ -1,6 +1,22 @@
 "use strict";
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 const common_vendor = require("./common/vendor.js");
+const utils_request = require("./utils/request.js");
+const store_store = require("./store/store.js");
+require("./js_sdk/luch-request/luch-request/core/Request.js");
+require("./js_sdk/luch-request/luch-request/core/dispatchRequest.js");
+require("./js_sdk/luch-request/luch-request/adapters/index.js");
+require("./js_sdk/luch-request/luch-request/helpers/buildURL.js");
+require("./js_sdk/luch-request/luch-request/utils.js");
+require("./js_sdk/luch-request/luch-request/core/buildFullPath.js");
+require("./js_sdk/luch-request/luch-request/helpers/isAbsoluteURL.js");
+require("./js_sdk/luch-request/luch-request/helpers/combineURLs.js");
+require("./js_sdk/luch-request/luch-request/core/settle.js");
+require("./js_sdk/luch-request/luch-request/core/InterceptorManager.js");
+require("./js_sdk/luch-request/luch-request/core/mergeConfig.js");
+require("./js_sdk/luch-request/luch-request/core/defaults.js");
+require("./js_sdk/luch-request/luch-request/utils/clone.js");
+require("./store/user.js");
 if (!Math) {
   "./pages/home/home.js";
   "./pages/mine/mine.js";
@@ -20,8 +36,33 @@ const _sfc_main = {
   }
 };
 const App = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "/Users/fangheng/Documents/Uniapp/uni-health/App.vue"]]);
+common_vendor.index.$http = utils_request.request;
+const defaultToastObj = {
+  mask: true,
+  duration: 2e3
+};
+const toast = ["fail", "success", "error", "exception"].reduce((prev, next) => {
+  prev[next] = (obj) => {
+    if (typeof obj === "string") {
+      common_vendor.index.showToast({
+        title: obj,
+        icon: next,
+        ...defaultToastObj
+      });
+    } else {
+      common_vendor.index.showToast({
+        ...defaultToastObj,
+        ...obj,
+        icon: next
+      });
+    }
+  };
+  return prev;
+}, {});
+common_vendor.index.$toast = toast;
 function createApp() {
   const app = common_vendor.createSSRApp(App);
+  app.use(store_store.store);
   return {
     app
   };

@@ -37,7 +37,22 @@
     },
     methods: {
       handleArrowClick() {
-        console.log('handle arrow click')
+        console.log('handle arrow click');
+        wx.getUserProfile({
+          desc: '用于完善会员资料',
+          success: (res) => {
+            console.log('getUserProfile res: ', res);
+          },
+          fail: (err) => {
+            console.log('getUserProfile err: ', err);
+          }
+        });
+        // wx.getUserProfile({
+        //       desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+        //       success: (res) => {
+        //         console.log('getUserProfile res: ', res);
+        //       }
+        //     })
       }
     },
   }

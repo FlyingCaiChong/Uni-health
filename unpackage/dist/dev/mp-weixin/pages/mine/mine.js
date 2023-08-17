@@ -3,6 +3,9 @@ const common_vendor = require("../../common/vendor.js");
 const _sfc_main = {
   data() {
     return {};
+  },
+  onShow() {
+    console.log("onShow");
   }
 };
 if (!Array) {

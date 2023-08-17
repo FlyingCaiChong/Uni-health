@@ -4,9 +4,54 @@ const _sfc_main = {
   data() {
     return {};
   },
+  computed: {
+    ...common_vendor.mapState("m_user", ["redirectInfo"])
+  },
   methods: {
+    ...common_vendor.mapMutations("m_user", ["updateToken", "updateOpenid"]),
     handleLoginClick() {
-      console.log("click login");
+      common_vendor.wx$1.login({
+        success: (res) => {
+          console.log("success", res);
+          if (res.errMsg === "login:ok") {
+            const code = res.code;
+            common_vendor.index.$http.post("users/wxlogin", {
+              code
+            }).then((result) => {
+              console.log("uni $toast", common_vendor.index.$toast);
+              console.log("result", result);
+              if (result.success) {
+                const token = result.resultData.token;
+                const openid = result.resultData.openid;
+                this.updateToken(token);
+                this.updateOpenid(openid);
+                common_vendor.index.$toast.success("登录成功");
+                this.navigateBack();
+              }
+            }).catch((err) => {
+              console.log("err", err);
+            });
+          }
+        },
+        fail: (err) => {
+          console.log("fail", err);
+        },
+        complete: () => {
+          console.log("complete");
+        }
+      });
+    },
+    navigateBack() {
+      if (this.redirectInfo && this.redirectInfo.openType === "switchTab") {
+        common_vendor.index.switchTab({
+          url: this.redirectInfo.from,
+          complete: () => {
+            this.updateRedirectInfo(null);
+          }
+        });
+      } else {
+        common_vendor.index.navigateBack();
+      }
     }
   }
 };

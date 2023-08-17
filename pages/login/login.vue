@@ -7,15 +7,65 @@
 </template>
 
 <script>
+  import { mapState, mapMutations } from 'vuex';
   export default {
     data() {
       return {
         
       };
     },
+    computed: {
+      ...mapState('m_user', ['redirectInfo'])
+    },
     methods: {
+      ...mapMutations('m_user', ['updateToken', 'updateOpenid']),
       handleLoginClick() {
-        console.log('click login')
+        wx.login({
+          success: (res) => {
+            console.log('success', res);
+            if (res.errMsg === 'login:ok') {
+              // 登录成功 获取到code
+              const code = res.code;
+              uni.$http.post('users/wxlogin', {
+                code
+              }).then(result => {
+                console.log('uni $toast', uni.$toast);
+                console.log('result', result);
+                if (result.success) {
+                  // 登录成功
+                  const token = result.resultData.token;
+                  const openid = result.resultData.openid;
+                  // 保存token
+                  this.updateToken(token);
+                  this.updateOpenid(openid);
+                  
+                  uni.$toast.success('登录成功');
+                  this.navigateBack();
+                }
+              }).catch(err => {
+                console.log('err', err);
+              })
+            }
+          },
+          fail: (err) => {
+            console.log('fail', err);
+          },
+          complete: () => {
+            console.log('complete');
+          }
+        })
+      },
+      navigateBack() {
+       if (this.redirectInfo && this.redirectInfo.openType === 'switchTab') {
+         uni.switchTab({
+           url: this.redirectInfo.from,
+           complete: () => {
+             this.updateRedirectInfo(null)
+           }
+         })
+       } else {
+         uni.navigateBack();
+       }
       }
     },
   }

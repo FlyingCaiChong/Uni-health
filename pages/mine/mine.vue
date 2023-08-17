@@ -28,6 +28,9 @@
       return {
         
       };
+    },
+    onShow() {
+      console.log('onShow');
     }
   }
 </script>
