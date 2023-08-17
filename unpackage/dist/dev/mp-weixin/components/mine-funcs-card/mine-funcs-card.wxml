@@ -1,0 +1,1 @@
+<view class="mine-header-card"><view wx:for="{{a}}" wx:for-item="item" wx:key="c" class="funcs-item" bindtap="{{item.d}}"><image class="img" src="{{item.a}}" mode=""></image><text class="title">{{item.b}}</text></view></view>

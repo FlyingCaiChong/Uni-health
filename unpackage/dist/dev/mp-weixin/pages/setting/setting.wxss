@@ -1,0 +1,14 @@
+/* 水平间距 */
+/* 水平间距 */
+.setting-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.setting-wrapper .card-mt {
+  margin-top: 30rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+}
+.setting-wrapper .uni-card {
+  border-radius: 16rpx;
+}

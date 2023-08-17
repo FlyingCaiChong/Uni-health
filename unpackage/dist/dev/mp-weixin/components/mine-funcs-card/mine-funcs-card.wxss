@@ -1,0 +1,24 @@
+/* 水平间距 */
+/* 水平间距 */
+.mine-header-card {
+  border-radius: 16rpx;
+  background-color: #fff;
+  height: 180rpx;
+  display: flex;
+}
+.mine-header-card .funcs-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.mine-header-card .funcs-item .img {
+  width: 48rpx;
+  height: 48rpx;
+}
+.mine-header-card .funcs-item .title {
+  margin-top: 10rpx;
+  color: #666;
+  font-size: 12px;
+}
