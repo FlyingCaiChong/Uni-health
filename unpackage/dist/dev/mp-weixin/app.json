@@ -2,7 +2,8 @@
   "pages": [
     "pages/home/home",
     "pages/mine/mine",
-    "pages/setting/setting"
+    "pages/setting/setting",
+    "pages/login/login"
   ],
   "window": {
     "navigationBarTextStyle": "black",

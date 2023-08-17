@@ -68,6 +68,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       title: "建议反馈",
       clickable: true,
       link: "navigateTo",
+      to: "/pages/login/login",
       ["extra-icon"]: {
         color: "#4cd964",
         size: "22",

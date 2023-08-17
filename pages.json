@@ -20,6 +20,13 @@
         "enablePullDownRefresh": false
       }
 
+    }, {
+      "path": "pages/login/login",
+      "style": {
+        "navigationBarTitleText": "账号登录",
+        "enablePullDownRefresh": false
+      }
+
     }
   ],
   "globalStyle": {

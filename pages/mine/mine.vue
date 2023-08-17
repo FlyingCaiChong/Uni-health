@@ -11,7 +11,7 @@
     <uni-card class="card-mt" padding="0" spacing="0" margin="0" :border="false" :is-shadow="false">
       <uni-list>
       	<uni-list-item showExtraIcon title="商务合作" clickable link="navigateTo" :extra-icon="{ color: '#4cd964', size: '22', type: 'staff'}"></uni-list-item>
-      	<uni-list-item showExtraIcon title="建议反馈" clickable link="navigateTo" :extra-icon="{ color: '#4cd964', size: '22', type: 'info'}" ></uni-list-item>
+      	<uni-list-item showExtraIcon title="建议反馈" clickable link="navigateTo" to="/pages/login/login" :extra-icon="{ color: '#4cd964', size: '22', type: 'info'}" ></uni-list-item>
       </uni-list>
     </uni-card>
     <uni-card class="card-mt cart-mb" padding="0" spacing="0" margin="0" :border="false" :is-shadow="false">

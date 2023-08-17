@@ -1,0 +1,1 @@
+<view class="login-wrapper"><image src="/static/common-icons/empty.png" class="empty-img" mode=""></image><text class="tips">登录后解锁所有功能</text><button class="login-btn" type="primary" bindtap="{{a}}">立即登录</button></view>
