@@ -1,0 +1,14 @@
+/* 水平间距 */
+/* 水平间距 */
+.user-info-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.user-info-wrapper .user-info-list {
+  display: flex;
+  flex-direction: column;
+}
+.user-info-wrapper .save-btn {
+  margin-top: 30rpx;
+  width: 660rpx;
+}

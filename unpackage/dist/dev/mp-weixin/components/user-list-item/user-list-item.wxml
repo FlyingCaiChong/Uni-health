@@ -1,0 +1,1 @@
+<view class="user-list-item"><view class="user-list-item-left">{{a}}</view><view class="user-list-item-right"><slot name="right"></slot></view></view>

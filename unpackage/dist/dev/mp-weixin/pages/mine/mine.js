@@ -4,8 +4,46 @@ const _sfc_main = {
   data() {
     return {};
   },
+  computed: {
+    ...common_vendor.mapState("m_user", ["token"])
+  },
   onShow() {
     console.log("onShow");
+  },
+  methods: {
+    // 健康测评
+    handleHealthEvaluation() {
+      this.handleNavigation();
+    },
+    // 健康方案
+    handleHealthScheme() {
+      this.handleNavigation();
+    },
+    // 商务合作
+    handleBusiness() {
+      this.handleNavigation();
+    },
+    // 意见反馈
+    handleFeedback() {
+      this.handleNavigation();
+    },
+    // 设置
+    handleSetting() {
+      this.handleNavigation("/pages/setting/setting");
+    },
+    handleNavigation(url) {
+      if (this.token.length) {
+        if (!url)
+          return;
+        common_vendor.index.navigateTo({
+          url
+        });
+      } else {
+        common_vendor.index.navigateTo({
+          url: "/pages/login/login"
+        });
+      }
+    }
   }
 };
 if (!Array) {
@@ -26,78 +64,76 @@ if (!Math) {
 }
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return {
-    a: common_vendor.p({
+    a: common_vendor.o($options.handleHealthEvaluation),
+    b: common_vendor.p({
       showExtraIcon: true,
       title: "健康测评",
       clickable: true,
-      link: "navigateTo",
       ["extra-icon"]: {
         color: "#4cd964",
         size: "22",
         type: "shop-filled"
       }
     }),
-    b: common_vendor.p({
+    c: common_vendor.o($options.handleHealthScheme),
+    d: common_vendor.p({
       showExtraIcon: true,
       title: "健康方案",
       clickable: true,
-      link: "navigateTo",
       ["extra-icon"]: {
         color: "#4cd964",
         size: "22",
         type: "wallet-filled"
       }
     }),
-    c: common_vendor.p({
+    e: common_vendor.p({
       padding: "0",
       spacing: "0",
       margin: "0",
       border: false,
       ["is-shadow"]: false
     }),
-    d: common_vendor.p({
+    f: common_vendor.o($options.handleBusiness),
+    g: common_vendor.p({
       showExtraIcon: true,
       title: "商务合作",
       clickable: true,
-      link: "navigateTo",
       ["extra-icon"]: {
         color: "#4cd964",
         size: "22",
         type: "staff"
       }
     }),
-    e: common_vendor.p({
+    h: common_vendor.o($options.handleFeedback),
+    i: common_vendor.p({
       showExtraIcon: true,
       title: "建议反馈",
       clickable: true,
-      link: "navigateTo",
-      to: "/pages/login/login",
       ["extra-icon"]: {
         color: "#4cd964",
         size: "22",
         type: "info"
       }
     }),
-    f: common_vendor.p({
+    j: common_vendor.p({
       padding: "0",
       spacing: "0",
       margin: "0",
       border: false,
       ["is-shadow"]: false
     }),
-    g: common_vendor.p({
+    k: common_vendor.o($options.handleSetting),
+    l: common_vendor.p({
       showExtraIcon: true,
       title: "设置",
       clickable: true,
-      link: "navigateTo",
-      to: "/pages/setting/setting",
       ["extra-icon"]: {
         color: "#4cd964",
         size: "22",
         type: "settings-filled"
       }
     }),
-    h: common_vendor.p({
+    m: common_vendor.p({
       padding: "0",
       spacing: "0",
       margin: "0",

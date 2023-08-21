@@ -22,6 +22,7 @@ if (!Math) {
   "./pages/mine/mine.js";
   "./pages/setting/setting.js";
   "./pages/login/login.js";
+  "./pages/userinfo/userinfo.js";
 }
 const _sfc_main = {
   onLaunch: function() {

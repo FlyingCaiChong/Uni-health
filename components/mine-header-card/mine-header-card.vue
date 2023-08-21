@@ -2,12 +2,13 @@
   <view class="mine-header-card">
     <view class="top-box">
       <image src="" class="img"></image>
-      <text class="user-title">微信用户</text>
+      <text class="user-title" v-if="isLogin">微信用户</text>
+      <text class="user-title" v-else @click="handleLoginClick">点击登录</text>
       <uni-icons class="right-arrow" type="right" size="24" color="#666" @click="handleArrowClick"></uni-icons>
     </view>
     <view class="bottom-box">
       <view class="bottom-box-item" v-for="(item, idx) in itemList" :key="idx">
-        <text class="value">{{ item.value }}</text>
+        <text class="value">{{ isLogin ? item.value : '--'}}</text>
         <text class="title">{{ item.title }}</text>
       </view>
     </view>
@@ -15,6 +16,7 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex';
   export default {
     name:"mine-header-card",
     data() {
@@ -35,24 +37,38 @@
         ]
       };
     },
+    computed: {
+      ...mapState('m_user', ['token']),
+      isLogin() {
+        return this.token.length > 0;
+      }
+    },
     methods: {
       handleArrowClick() {
         console.log('handle arrow click');
-        wx.getUserProfile({
-          desc: '用于完善会员资料',
-          success: (res) => {
-            console.log('getUserProfile res: ', res);
-          },
-          fail: (err) => {
-            console.log('getUserProfile err: ', err);
-          }
-        });
         // wx.getUserProfile({
-        //       desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-        //       success: (res) => {
-        //         console.log('getUserProfile res: ', res);
-        //       }
-        //     })
+        //   desc: '用于完善会员资料',
+        //   success: (res) => {
+        //     console.log('getUserProfile res: ', res);
+        //   },
+        //   fail: (err) => {
+        //     console.log('getUserProfile err: ', err);
+        //   }
+        // });
+        if (this.isLogin) {
+          uni.navigateTo({
+            url: '/pages/userinfo/userinfo'
+          })
+        } else {
+          uni.navigateTo({
+            url: '/pages/login/login'
+          })
+        }
+      },
+      handleLoginClick() {
+        uni.navigateTo({
+          url: '/pages/login/login'
+        })
       }
     },
   }

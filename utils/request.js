@@ -3,7 +3,8 @@ import store from '../store/store.js'
 
 const request = new Request({
   // baseURL: 'http://47.100.86.234',
-  baseURL: 'http://127.0.0.1:3001',
+  baseURL: 'http://127.0.0.1:3001/health',
+  // baseURL: 'http://47.100.86.234/health',
   timeout: 60000
 });
 
@@ -28,7 +29,7 @@ const errorHandler = error => {
     const token = store.state.m_user.token;
     console.log('token: ', token);
     if (token) {
-      config.header['Authorization'] = token;
+      config.header['Authorization'] = 'Bearer ' + token;
     }
     return config;
   }, errorHandler);
@@ -39,8 +40,9 @@ const errorHandler = error => {
     if (data.status === 'complete') {
       return data;
     } else {
+      console.log('sss', data);
       // TODO: 处理token失效跳转到登录
-      showToastMessage(data.errorMessage);
+      showToastMessage(data.errorMesssage);
       return Promise.reject(data);
     }
   }, errorHandler);

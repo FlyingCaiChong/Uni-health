@@ -3,6 +3,17 @@ const common_vendor = require("../../common/vendor.js");
 const _sfc_main = {
   data() {
     return {};
+  },
+  methods: {
+    ...common_vendor.mapMutations("m_user", ["updateToken", "updateOpenid"]),
+    // 退出登录
+    handleLogout() {
+      this.updateToken("");
+      this.updateOpenid("");
+      common_vendor.index.reLaunch({
+        url: "/pages/home/home"
+      });
+    }
   }
 };
 if (!Array) {
@@ -66,12 +77,12 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       border: false,
       ["is-shadow"]: false
     }),
-    j: common_vendor.p({
-      title: "退出账号",
-      clickable: true,
-      link: "navigateTo"
-    }),
+    j: common_vendor.o($options.handleLogout),
     k: common_vendor.p({
+      title: "退出账号",
+      clickable: true
+    }),
+    l: common_vendor.p({
       padding: "0",
       spacing: "0",
       margin: "0",

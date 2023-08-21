@@ -8,6 +8,7 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex';
   export default {
     name:"mine-funcs-card",
     data() {
@@ -15,26 +16,45 @@
         funcsList: [
           {
             title: '基本信息',
-            icons: '/static/common-icons/basic-info.png'
+            icons: '/static/common-icons/basic-info.png',
+            url: '' // FIXME: 配置url
           },
           {
             title: '收藏的食物',
-            icons: '/static/common-icons/favorite.png'
+            icons: '/static/common-icons/favorite.png',
+            url: '' // FIXME: 配置url
           },
           {
             title: '上传的食物',
-            icons: '/static/common-icons/shop.png'
+            icons: '/static/common-icons/shop.png',
+            url: '' // FIXME: 配置url
           },
           {
             title: '更多应用',
-            icons: '/static/common-icons/funcs.png'
+            icons: '/static/common-icons/funcs.png',
+            url: '' // FIXME: 配置url
           }
         ]
       };
     },
+    computed: {
+      ...mapState('m_user', ['token']),
+    },
     methods: {
       handleFunClick(item) {
-        console.log('handle fun click: ', item.title);
+        this.handleNavigation(item.url);
+      },
+      handleNavigation(url) {
+        if (this.token.length) {
+          if (!url) return;
+          uni.navigateTo({
+            url: url
+          });
+        } else {
+          uni.navigateTo({
+            url: '/pages/login/login'
+          });
+        }
       }
     },
   }

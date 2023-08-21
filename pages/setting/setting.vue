@@ -14,19 +14,31 @@
     </uni-card>
     <uni-card class="card-mt" padding="0" spacing="0" margin="0" :border="false" :is-shadow="false">
       <uni-list>
-      	<uni-list-item title="退出账号" clickable link="navigateTo"></uni-list-item>
+      	<uni-list-item title="退出账号" clickable @click="handleLogout"></uni-list-item>
       </uni-list>
     </uni-card>
   </view>
 </template>
 
 <script>
+  import { mapMutations } from 'vuex';
   export default {
     data() {
       return {
         
       };
-    }
+    },
+    methods: {
+      ...mapMutations('m_user', ['updateToken', 'updateOpenid']),
+      // 退出登录
+      handleLogout() {
+        this.updateToken('');
+        this.updateOpenid('');
+        uni.reLaunch({
+          url: '/pages/home/home'
+        });
+      }
+    },
   }
 </script>
 

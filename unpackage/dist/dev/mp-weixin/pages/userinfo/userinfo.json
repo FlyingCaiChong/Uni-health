@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "个人信息",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "user-list-item": "../../components/user-list-item/user-list-item"
+  }
+}
