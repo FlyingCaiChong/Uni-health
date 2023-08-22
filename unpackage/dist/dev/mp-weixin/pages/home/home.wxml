@@ -1,1 +1,1 @@
-<view> 这是首页 </view>
+<view class="home-wrapper"><view class="banner"><swiper indicator-dots="{{true}}" autoplay="{{true}}" interval="{{3000}}" duration="{{1000}}"><swiper-item wx:for="{{a}}" wx:for-item="item" wx:key="b"><view class="swiper-item"><image src="{{item.a}}" mode="aspectFill"/></view></swiper-item></swiper></view></view>
