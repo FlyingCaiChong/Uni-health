@@ -1,0 +1,53 @@
+/* 水平间距 */
+/* 水平间距 */
+.food-record-list-item {
+  margin: 30rpx;
+  margin-top: 0;
+  min-height: 176rpx;
+  background-color: #fff;
+  border-radius: 16rpx;
+  display: flex;
+  flex-direction: column;
+}
+.food-record-list-item-header {
+  height: 88rpx;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.food-record-list-item-header .title {
+  color: #333;
+  font-size: 12px;
+  margin-left: 20rpx;
+  font-weight: 700;
+}
+.food-record-list-item-header .value {
+  margin-left: auto;
+  color: #333;
+  font-size: 12px;
+}
+.food-record-list-item-header .unit {
+  margin-left: 4rpx;
+  margin-right: 20rpx;
+  color: #999;
+  font-size: 12px;
+}
+.food-record-list-item-content {
+  flex: 1;
+}
+.food-record-list-item-content-sub {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 88rpx;
+}
+.food-record-list-item-content-sub .title {
+  font-size: 12px;
+  color: #666;
+  margin-left: 20rpx;
+}
+.food-record-list-item-content-sub .arrow {
+  margin-left: auto;
+  margin-right: 20rpx;
+}

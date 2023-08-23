@@ -9,6 +9,11 @@ const _sfc_main = {
   onLoad() {
     this.getBanners();
   },
+  onPullDownRefresh() {
+    this.getBanners().then(() => {
+      common_vendor.index.stopPullDownRefresh();
+    });
+  },
   methods: {
     async getBanners() {
       try {
@@ -19,6 +24,11 @@ const _sfc_main = {
         }
       } catch (e) {
       }
+    },
+    gotoFoodRecord() {
+      common_vendor.index.navigateTo({
+        url: "/page_records/food_record/food_record"
+      });
     }
   }
 };
@@ -29,7 +39,8 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         a: item.icon_url,
         b: index
       };
-    })
+    }),
+    b: common_vendor.o((...args) => $options.gotoFoodRecord && $options.gotoFoodRecord(...args))
   };
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "/Users/fangheng/Documents/Uniapp/uni-health/pages/home/home.vue"]]);

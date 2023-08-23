@@ -23,6 +23,7 @@ if (!Math) {
   "./pages/setting/setting.js";
   "./pages/login/login.js";
   "./pages/userinfo/userinfo.js";
+  "./page_records/food_record/food_record.js";
 }
 const _sfc_main = {
   onLaunch: function() {

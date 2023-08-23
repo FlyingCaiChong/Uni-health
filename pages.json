@@ -3,7 +3,7 @@
       "path": "pages/home/home",
       "style": {
         "navigationBarTitleText": "首页",
-        "enablePullDownRefresh": false
+        "enablePullDownRefresh": true
       }
 
     },
@@ -36,6 +36,16 @@
 
     }
   ],
+  "subPackages": [{
+    "root": "page_records",
+    "pages": [{
+      "path": "food_record/food_record",
+      "style": {
+        "navigationBarTitleText": "饮食记录",
+        "enablePullDownRefresh": false
+      }
+    }]
+  }],
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",

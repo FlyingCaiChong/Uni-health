@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "饮食记录",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "qiun-data-charts": "../../uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts",
+    "food-record-list-item": "../../components/food-record-list-item/food-record-list-item"
+  }
+}

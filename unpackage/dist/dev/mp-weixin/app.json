@@ -6,6 +6,14 @@
     "pages/login/login",
     "pages/userinfo/userinfo"
   ],
+  "subPackages": [
+    {
+      "root": "page_records",
+      "pages": [
+        "food_record/food_record"
+      ]
+    }
+  ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
