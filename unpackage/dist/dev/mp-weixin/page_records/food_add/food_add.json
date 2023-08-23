@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "添加食物",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "uni-search-bar": "../../uni_modules/uni-search-bar/components/uni-search-bar/uni-search-bar",
+    "food-record-list-add-item": "../../components/food-record-list-add-item/food-record-list-add-item",
+    "uni-load-more": "../../uni_modules/uni-load-more/components/uni-load-more/uni-load-more",
+    "uni-list": "../../uni_modules/uni-list/components/uni-list/uni-list"
+  }
+}

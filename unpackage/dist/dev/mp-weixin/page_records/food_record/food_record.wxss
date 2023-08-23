@@ -81,3 +81,8 @@
   display: flex;
   flex-direction: column;
 }
+.icon {
+  margin-left: 20rpx;
+  width: 36rpx;
+  height: 36rpx;
+}

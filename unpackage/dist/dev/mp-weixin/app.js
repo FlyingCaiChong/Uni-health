@@ -24,6 +24,7 @@ if (!Math) {
   "./pages/login/login.js";
   "./pages/userinfo/userinfo.js";
   "./page_records/food_record/food_record.js";
+  "./page_records/food_add/food_add.js";
 }
 const _sfc_main = {
   onLaunch: function() {

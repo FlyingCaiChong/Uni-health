@@ -19,6 +19,11 @@ const _sfc_main = {
   },
   data() {
     return {};
+  },
+  methods: {
+    handleAdd() {
+      this.$emit("add");
+    }
   }
 };
 if (!Array) {
@@ -34,7 +39,13 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     a: common_vendor.t($props.title),
     b: common_vendor.t($props.quantity),
     c: common_vendor.t($props.total),
-    d: common_vendor.p({
+    d: common_vendor.o($options.handleAdd),
+    e: common_vendor.p({
+      type: "plus-filled",
+      size: "20",
+      color: "#86C8BC"
+    }),
+    f: common_vendor.p({
       type: "right",
       size: "20",
       color: "#999"

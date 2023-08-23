@@ -44,10 +44,26 @@
 
     <!-- list -->
     <view class="food-record-list">
-      <food-record-list-item title="早餐" :total="400" :quantity="100"></food-record-list-item>
-      <food-record-list-item title="午餐" :total="500" :quantity="200"></food-record-list-item>
-      <food-record-list-item title="晚餐" :total="600" :quantity="300"></food-record-list-item>
-      <food-record-list-item title="加餐" :total="1000" :quantity="400"></food-record-list-item>
+      <food-record-list-item title="早餐" :total="400" :quantity="100" @add="handleAdd">
+        <template #icon>
+          <image class="icon" src="@/static/common-icons/food_icon_1.png" mode=""></image>
+        </template>
+      </food-record-list-item>
+      <food-record-list-item title="午餐" :total="500" :quantity="200">
+        <template #icon>
+          <image class="icon" src="@/static/common-icons/food_icon_2.png" mode=""></image>
+        </template>
+      </food-record-list-item>
+      <food-record-list-item title="晚餐" :total="600" :quantity="300">
+        <template #icon>
+          <image class="icon" src="@/static/common-icons/food_icon_3.png" mode=""></image>
+        </template>
+      </food-record-list-item>
+      <food-record-list-item title="加餐" :total="1000" :quantity="400">
+        <template #icon>
+          <image class="icon" src="@/static/common-icons/food_icon_4.png" mode=""></image>
+        </template>
+      </food-record-list-item>
     </view>
   </view>
 </template>
@@ -101,6 +117,12 @@
           this.chartData = JSON.parse(JSON.stringify(res));
           console.log('chartData', this.chartData);
         }, 500);
+      },
+      
+      handleAdd() {
+        uni.navigateTo({
+          url: '/page_records/food_add/food_add'
+        });
       }
     },
   }
@@ -194,58 +216,12 @@
   &-list {
     display: flex;
     flex-direction: column;
-    
-  //   &-item {
-  //     margin: 30rpx;
-  //     min-height: 176rpx;
-  //     background-color: #fff;
-  //     border-radius: 16rpx;
-  //     display: flex;
-  //     flex-direction: column;
-  //     &-header {
-  //       height: 88rpx;
-  //       border-bottom: 1px solid #eee;
-  //       display: flex;
-  //       flex-direction: row;
-  //       align-items: center;
-  //       .title {
-  //         color: #333;
-  //         font-size: 12px;
-  //         margin-left: 20rpx;
-  //         font-weight: 700;
-  //       }
-  //       .value {
-  //         margin-left: auto;
-  //         color: #333;
-  //         font-size: 12px;
-  //       }
-  //       .unit {
-  //         margin-left: 4rpx;
-  //         margin-right: 20rpx;
-  //         color: #999;
-  //         font-size: 12px;
-  //       }
-  //     }
-  //     &-content {
-  //       flex: 1;
-  //       &-sub {
-  //         display: flex;
-  //         flex-direction: row;
-  //         align-items: center;
-  //         height: 88rpx;
-  //         .title {
-  //           font-size: 12px;
-  //           color: #666;
-  //           margin-left: 20rpx;
-  //         }
-  //         .arrow {
-  //           margin-left: auto;
-  //           margin-right: 20rpx;
-  //         }
-  //       }
-  //     }
-  //   }
   }
 }
 
+.icon {
+  margin-left: 20rpx;
+  width: 36rpx;
+  height: 36rpx;
+}
 </style>

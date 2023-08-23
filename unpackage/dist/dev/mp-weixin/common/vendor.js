@@ -7871,6 +7871,13 @@ const subPackages = [
           navigationBarTitleText: "饮食记录",
           enablePullDownRefresh: false
         }
+      },
+      {
+        path: "food_add/food_add",
+        style: {
+          navigationBarTitleText: "添加食物",
+          enablePullDownRefresh: true
+        }
       }
     ]
   }
@@ -10428,6 +10435,7 @@ exports.createStore = createStore;
 exports.e = e;
 exports.f = f$1;
 exports.index = index;
+exports.initVueI18n = initVueI18n;
 exports.mapMutations = mapMutations;
 exports.mapState = mapState;
 exports.n = n$1;

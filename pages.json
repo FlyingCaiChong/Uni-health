@@ -44,6 +44,12 @@
         "navigationBarTitleText": "饮食记录",
         "enablePullDownRefresh": false
       }
+    }, {
+      "path": "food_add/food_add",
+      "style": {
+        "navigationBarTitleText": "添加食物",
+        "enablePullDownRefresh": true
+      }
     }]
   }],
   "globalStyle": {

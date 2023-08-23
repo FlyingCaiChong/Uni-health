@@ -1,9 +1,11 @@
 <template>
   <view class="food-record-list-item">
     <view class="food-record-list-item-header">
+      <slot name="icon"></slot>
       <text class="title">{{ title }}</text>
       <text class="value">{{ quantity }}</text>
       <text class="unit">/{{total}} 千卡</text>
+      <uni-icons class="plus" type="plus-filled" size="20" color="#86C8BC" @click="handleAdd"></uni-icons>
     </view>
     <view class="food-record-list-item-content">
       <view class="food-record-list-item-content-sub">
@@ -36,7 +38,12 @@
       return {
 
       };
-    }
+    },
+    methods: {
+      handleAdd() {
+        this.$emit('add');
+      }
+    },
   }
 </script>
 
@@ -60,7 +67,7 @@
       .title {
         color: #333;
         font-size: 12px;
-        margin-left: 20rpx;
+        margin-left: 10rpx;
         font-weight: 700;
       }
 
@@ -72,9 +79,12 @@
 
       .unit {
         margin-left: 4rpx;
-        margin-right: 20rpx;
+        margin-right: 10rpx;
         color: #999;
         font-size: 12px;
+      }
+      .plus {
+        margin-right: 20rpx;
       }
     }
 
