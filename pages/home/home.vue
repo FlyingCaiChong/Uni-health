@@ -15,8 +15,8 @@
       <view class="funcs-item item1 flip-in-hor-bottom fade-in" hover-class="vibrate-1" @click="gotoFoodRecord">
         <text class="title">饮食摄入</text>
       </view>
-      <view class="funcs-item item2 flip-in-hor-bottom fade-in" hover-class="vibrate-1">
-         <text class="title">运动消耗</text>
+      <view class="funcs-item item2 flip-in-hor-bottom fade-in" hover-class="vibrate-1" @click="gotoSportClock">
+         <text class="title">运动打卡</text>
       </view>
       <view class="funcs-item item3 flip-in-hor-bottom fade-in" hover-class="vibrate-1">
          <text class="title">体重记录</text>
@@ -60,6 +60,12 @@
       gotoFoodRecord() {
         uni.navigateTo({
           url: '/page_records/food_record/food_record'
+        })
+      },
+      
+      gotoSportClock() {
+        uni.navigateTo({
+          url: '/page_records/sport_clock/sport_clock'
         })
       }
     },

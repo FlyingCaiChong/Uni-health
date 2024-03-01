@@ -11,7 +11,8 @@
       "root": "page_records",
       "pages": [
         "food_record/food_record",
-        "food_add/food_add"
+        "food_add/food_add",
+        "sport_clock/sport_clock"
       ]
     }
   ],

@@ -50,6 +50,13 @@
         "navigationBarTitleText": "添加食物",
         "enablePullDownRefresh": true
       }
+    }, {
+      "path": "sport_clock/sport_clock",
+      "style": {
+        "navigationBarTitleText": "运动打卡",
+        "enablePullDownRefresh": false
+      }
+
     }]
   }],
   "globalStyle": {

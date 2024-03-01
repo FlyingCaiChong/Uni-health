@@ -29,6 +29,11 @@ const _sfc_main = {
       common_vendor.index.navigateTo({
         url: "/page_records/food_record/food_record"
       });
+    },
+    gotoSportClock() {
+      common_vendor.index.navigateTo({
+        url: "/page_records/sport_clock/sport_clock"
+      });
     }
   }
 };
@@ -40,7 +45,8 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         b: index
       };
     }),
-    b: common_vendor.o((...args) => $options.gotoFoodRecord && $options.gotoFoodRecord(...args))
+    b: common_vendor.o((...args) => $options.gotoFoodRecord && $options.gotoFoodRecord(...args)),
+    c: common_vendor.o((...args) => $options.gotoSportClock && $options.gotoSportClock(...args))
   };
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "/Users/fangheng/Documents/Uniapp/uni-health/pages/home/home.vue"]]);

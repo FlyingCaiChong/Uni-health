@@ -25,6 +25,7 @@ if (!Math) {
   "./pages/userinfo/userinfo.js";
   "./page_records/food_record/food_record.js";
   "./page_records/food_add/food_add.js";
+  "./page_records/sport_clock/sport_clock.js";
 }
 const _sfc_main = {
   onLaunch: function() {
