@@ -45,7 +45,7 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
+  import { mapState, mapMutations } from 'vuex';
   import { generateUUID } from '@/utils/util.js'
   export default {
     data() {
@@ -95,6 +95,7 @@
           this.currentWeightIndex = currentWeightIndex !== -1 ? currentWeightIndex : 0;
           const targetWeightIndex = this.weightRange.findIndex(i => i === this.localUserInfo.targetWeight);
           this.targetWeightIndex = targetWeightIndex !== -1 ? targetWeightIndex : 0;
+          this.updateUserInfo(res.resultData);
         } else {
           this.localUserInfo.userID = 'HU' + generateUUID(6);
         }
@@ -103,6 +104,7 @@
       });
     },
     methods: {
+      ...mapMutations('m_user', ['updateUserInfo']),
       bindGenderPickerChange(e) {
         console.log('bindGenderPickerChange: ', e);
         this.genderIndex = e.detail.value;

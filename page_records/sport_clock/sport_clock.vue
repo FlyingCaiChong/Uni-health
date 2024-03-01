@@ -1,8 +1,8 @@
 <template>
   <view>
-    <uni-calendar :lunar="true" :showMonth="true" :selected="selected" @change="onChange"></uni-calendar>
-    <view class="">
-      打卡天数: {{ clockedNum }}
+    <uni-calendar :lunar="true" :showMonth="true" :selected="selected" :start-date="startDate" :end-date="endDate" @change="onChange"></uni-calendar>
+    <view class="clocked-num-wrapper">
+      打卡天数: <view class="clocked-num">{{ clockedNum }}天</view>
     </view>
     <!-- 提示窗 -->
     <uni-popup ref="alertDialog" type="dialog">
@@ -12,17 +12,28 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex';
+  import { getDate } from '@/utils/util.js'
+  
   export default {
     data() {
       return {
+        startDate: '',
+        endDate: '',
         selected: [],
         currentSelect: ''
       };
     },
     computed: {
+      ...mapState('m_user', ['userInfo']),
       clockedNum() {
         return this.selected.length; 
       }
+    },
+    onReady() {
+      this.startDate = getDate(new Date(), -30).fullDate;
+      this.endDate = getDate(new Date()).fullDate;
+      this.getClocks();
     },
     methods: {
       onChange(e) {
@@ -38,23 +49,61 @@
         // 1. 弹窗提示是否打卡
         this.$refs.alertDialog.open();
       },
-      onDialogConfirm() {
+      async onDialogConfirm() {
         // 1. 调用接口
-        // 2. 打卡成功
-        // 3. 打卡失败
-        this.selected.push({
-          date: this.currentSelect,
-          info: '已打卡'
-        });
+        await this.addClocks();
         console.log('数据', this.selected);
       },
       onDialogClose() {
         console.log('关闭对话框')
+      },
+      async addClocks() {
+        try{
+          console.log('userID', this.userInfo);
+          const res = await uni.$http.post('sports/addClocks', {
+            date: this.currentSelect,
+            userID: this.userInfo.userID
+          });
+          if (res.resultData) {
+            uni.$toast.success(res.resultData);
+          }
+        }catch(e){
+          //TODO handle the exception
+        } finally {
+          this.getClocks();
+        }
+      },
+      async getClocks() {
+        try{
+          const res = await uni.$http.post('sports/getClocks', {
+            userID: this.userInfo.userID
+          });
+          console.log('get clocks', res);
+          if (res.resultData) {
+            this.selected = res.resultData.map(i => ({
+              date: i.clock_date,
+              info: '已打卡'
+            }));
+          }
+        }catch(e){
+          //TODO handle the exception
+        }
       }
     },
   }
 </script>
 
 <style lang="scss">
-
+.clocked-num-wrapper {
+  margin: 20rpx;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #666;
+  .clocked-num {
+    margin-left: 10rpx;
+    font-size: 20px;
+    color: #333;
+  }
+}
 </style>

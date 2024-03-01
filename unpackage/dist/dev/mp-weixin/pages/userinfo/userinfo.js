@@ -49,6 +49,7 @@ const _sfc_main = {
         this.currentWeightIndex = currentWeightIndex !== -1 ? currentWeightIndex : 0;
         const targetWeightIndex = this.weightRange.findIndex((i) => i === this.localUserInfo.targetWeight);
         this.targetWeightIndex = targetWeightIndex !== -1 ? targetWeightIndex : 0;
+        this.updateUserInfo(res.resultData);
       } else {
         this.localUserInfo.userID = "HU" + utils_util.generateUUID(6);
       }
@@ -57,6 +58,7 @@ const _sfc_main = {
     });
   },
   methods: {
+    ...common_vendor.mapMutations("m_user", ["updateUserInfo"]),
     bindGenderPickerChange(e) {
       console.log("bindGenderPickerChange: ", e);
       this.genderIndex = e.detail.value;

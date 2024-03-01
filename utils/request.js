@@ -3,8 +3,8 @@ import store from '../store/store.js'
 
 const request = new Request({
   // baseURL: 'http://47.100.86.234',
-  // baseURL: 'http://127.0.0.1:3001/health',
-  baseURL: 'http://flyingcc.cn/health',
+  baseURL: 'http://127.0.0.1:3001/health',
+  // baseURL: 'http://flyingcc.cn/health',
   timeout: 60000
 });
 

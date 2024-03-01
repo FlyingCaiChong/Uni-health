@@ -4,8 +4,8 @@ const js_sdk_luchRequest_luchRequest_core_Request = require("../js_sdk/luch-requ
 const store_store = require("../store/store.js");
 const request = new js_sdk_luchRequest_luchRequest_core_Request.Request({
   // baseURL: 'http://47.100.86.234',
-  // baseURL: 'http://127.0.0.1:3001/health',
-  baseURL: "http://flyingcc.cn/health",
+  baseURL: "http://127.0.0.1:3001/health",
+  // baseURL: 'http://flyingcc.cn/health',
   timeout: 6e4
 });
 const showToastMessage = (msg) => {

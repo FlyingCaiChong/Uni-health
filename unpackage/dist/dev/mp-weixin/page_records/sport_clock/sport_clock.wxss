@@ -1,0 +1,14 @@
+/* 水平间距 */
+/* 水平间距 */
+.clocked-num-wrapper {
+  margin: 20rpx;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #666;
+}
+.clocked-num-wrapper .clocked-num {
+  margin-left: 10rpx;
+  font-size: 20px;
+  color: #333;
+}

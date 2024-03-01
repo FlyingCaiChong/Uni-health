@@ -1,16 +1,25 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
+const utils_util = require("../../utils/util.js");
 const _sfc_main = {
   data() {
     return {
+      startDate: "",
+      endDate: "",
       selected: [],
       currentSelect: ""
     };
   },
   computed: {
+    ...common_vendor.mapState("m_user", ["userInfo"]),
     clockedNum() {
       return this.selected.length;
     }
+  },
+  onReady() {
+    this.startDate = utils_util.getDate(/* @__PURE__ */ new Date(), -30).fullDate;
+    this.endDate = utils_util.getDate(/* @__PURE__ */ new Date()).fullDate;
+    this.getClocks();
   },
   methods: {
     onChange(e) {
@@ -24,15 +33,42 @@ const _sfc_main = {
       this.currentSelect = fulldate;
       this.$refs.alertDialog.open();
     },
-    onDialogConfirm() {
-      this.selected.push({
-        date: this.currentSelect,
-        info: "已打卡"
-      });
+    async onDialogConfirm() {
+      await this.addClocks();
       console.log("数据", this.selected);
     },
     onDialogClose() {
       console.log("关闭对话框");
+    },
+    async addClocks() {
+      try {
+        console.log("userID", this.userInfo);
+        const res = await common_vendor.index.$http.post("sports/addClocks", {
+          date: this.currentSelect,
+          userID: this.userInfo.userID
+        });
+        if (res.resultData) {
+          common_vendor.index.$toast.success(res.resultData);
+        }
+      } catch (e) {
+      } finally {
+        this.getClocks();
+      }
+    },
+    async getClocks() {
+      try {
+        const res = await common_vendor.index.$http.post("sports/getClocks", {
+          userID: this.userInfo.userID
+        });
+        console.log("get clocks", res);
+        if (res.resultData) {
+          this.selected = res.resultData.map((i) => ({
+            date: i.clock_date,
+            info: "已打卡"
+          }));
+        }
+      } catch (e) {
+      }
     }
   }
 };
@@ -54,7 +90,9 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     b: common_vendor.p({
       lunar: true,
       showMonth: true,
-      selected: $data.selected
+      selected: $data.selected,
+      ["start-date"]: $data.startDate,
+      ["end-date"]: $data.endDate
     }),
     c: common_vendor.t($options.clockedNum),
     d: common_vendor.o($options.onDialogConfirm),
