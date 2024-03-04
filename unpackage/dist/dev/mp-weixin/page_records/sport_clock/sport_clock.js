@@ -73,15 +73,17 @@ const _sfc_main = {
 };
 if (!Array) {
   const _easycom_uni_calendar2 = common_vendor.resolveComponent("uni-calendar");
+  const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
   const _easycom_uni_popup_dialog2 = common_vendor.resolveComponent("uni-popup-dialog");
   const _easycom_uni_popup2 = common_vendor.resolveComponent("uni-popup");
-  (_easycom_uni_calendar2 + _easycom_uni_popup_dialog2 + _easycom_uni_popup2)();
+  (_easycom_uni_calendar2 + _easycom_uni_icons2 + _easycom_uni_popup_dialog2 + _easycom_uni_popup2)();
 }
 const _easycom_uni_calendar = () => "../../uni_modules/uni-calendar/components/uni-calendar/uni-calendar.js";
+const _easycom_uni_icons = () => "../../uni_modules/uni-icons/components/uni-icons/uni-icons.js";
 const _easycom_uni_popup_dialog = () => "../../uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog.js";
 const _easycom_uni_popup = () => "../../uni_modules/uni-popup/components/uni-popup/uni-popup.js";
 if (!Math) {
-  (_easycom_uni_calendar + _easycom_uni_popup_dialog + _easycom_uni_popup)();
+  (_easycom_uni_calendar + _easycom_uni_icons + _easycom_uni_popup_dialog + _easycom_uni_popup)();
 }
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return {
@@ -93,18 +95,22 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       ["start-date"]: $data.startDate,
       ["end-date"]: $data.endDate
     }),
-    c: common_vendor.t($options.clockedNum),
-    d: common_vendor.o($options.onDialogConfirm),
-    e: common_vendor.o($options.onDialogClose),
-    f: common_vendor.p({
+    c: common_vendor.p({
+      type: "flag-filled",
+      size: "20"
+    }),
+    d: common_vendor.t($options.clockedNum),
+    e: common_vendor.o($options.onDialogConfirm),
+    f: common_vendor.o($options.onDialogClose),
+    g: common_vendor.p({
       type: "info",
       cancelText: "取消",
       confirmText: "确定",
       title: "打卡",
       content: "确定打卡吗？"
     }),
-    g: common_vendor.sr("alertDialog", "f1458c34-1"),
-    h: common_vendor.p({
+    h: common_vendor.sr("alertDialog", "f1458c34-2"),
+    i: common_vendor.p({
       type: "dialog"
     })
   };

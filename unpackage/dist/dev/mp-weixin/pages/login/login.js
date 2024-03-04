@@ -8,7 +8,7 @@ const _sfc_main = {
     ...common_vendor.mapState("m_user", ["redirectInfo"])
   },
   methods: {
-    ...common_vendor.mapMutations("m_user", ["updateToken", "updateOpenid"]),
+    ...common_vendor.mapMutations("m_user", ["updateToken", "updateOpenid", "updateUserInfo"]),
     handleLoginClick() {
       common_vendor.wx$1.login({
         success: (res) => {
@@ -25,8 +25,7 @@ const _sfc_main = {
                 const openid = result.resultData.openid;
                 this.updateToken(token);
                 this.updateOpenid(openid);
-                common_vendor.index.$toast.success("登录成功");
-                this.navigateBack();
+                this.getUserInfo(openid);
               }
             }).catch((err) => {
               console.log("err", err);
@@ -52,6 +51,22 @@ const _sfc_main = {
       } else {
         common_vendor.index.navigateBack();
       }
+    },
+    getUserInfo(openid) {
+      common_vendor.index.$http.get("info/userinfo", {
+        params: {
+          openid
+        }
+      }).then((res) => {
+        if (res.resultData) {
+          this.updateUserInfo(res.resultData);
+        }
+        common_vendor.index.$toast.success("登录成功");
+        this.navigateBack();
+      }).catch((err) => {
+        console.log("get user info err: ", err);
+        common_vendor.index.$toast.fail("登陆失败：", err);
+      });
     }
   }
 };

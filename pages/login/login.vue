@@ -18,7 +18,7 @@
       ...mapState('m_user', ['redirectInfo'])
     },
     methods: {
-      ...mapMutations('m_user', ['updateToken', 'updateOpenid']),
+      ...mapMutations('m_user', ['updateToken', 'updateOpenid', 'updateUserInfo']),
       handleLoginClick() {
         wx.login({
           success: (res) => {
@@ -38,9 +38,7 @@
                   // 保存token
                   this.updateToken(token);
                   this.updateOpenid(openid);
-                  
-                  uni.$toast.success('登录成功');
-                  this.navigateBack();
+                  this.getUserInfo(openid);
                 }
               }).catch(err => {
                 console.log('err', err);
@@ -66,6 +64,22 @@
        } else {
          uni.navigateBack();
        }
+      },
+      getUserInfo(openid) {
+        uni.$http.get('info/userinfo', {
+          params: {
+            openid
+          }
+        }).then(res => {
+          if (res.resultData) {
+            this.updateUserInfo(res.resultData);
+          }
+          uni.$toast.success('登录成功');
+          this.navigateBack();
+        }).catch(err => {
+          console.log('get user info err: ', err);
+          uni.$toast.fail('登陆失败：', err);
+        });
       }
     },
   }
