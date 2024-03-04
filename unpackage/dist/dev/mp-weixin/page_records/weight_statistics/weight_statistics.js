@@ -16,16 +16,18 @@ const _sfc_main = {
     async getWeightDatas() {
       const res = await common_vendor.index.$http.post("weight/getWeights", {
         userID: this.userInfo.userID,
+        currentPage: 1,
+        pageSize: 100,
         order: "ASC"
         // 升序 默认日期降序DESC
       });
-      if (res && res.resultData) {
+      if (res && res.resultData.list) {
         this.chartData = {
-          categories: res.resultData.map((i) => this.formatDate(i.weight_date)),
+          categories: res.resultData.list.map((i) => this.formatDate(i.weight_date)),
           series: [
             {
               name: "体重",
-              data: res.resultData.map((i) => i.weight)
+              data: res.resultData.list.map((i) => i.weight)
             }
           ]
         };

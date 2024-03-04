@@ -26,15 +26,17 @@
         // 获取腰围数据列表
         const res = await uni.$http.post('waist/getWaists', {
           userID: this.userInfo.userID,
+          currentPage: 1,
+          pageSize: 100,
           order: "ASC" // 升序 默认日期降序DESC
         });
-        if (res && res.resultData) {
+        if (res && res.resultData.list) {
           this.chartData = {
-            categories: res.resultData.map(i => this.formatDate(i.waist_date)),
+            categories: res.resultData.list.map(i => this.formatDate(i.waist_date)),
             series: [
               {
                 name: '腰围',
-                data: res.resultData.map(i => i.waist)
+                data: res.resultData.list.map(i => i.waist)
               }
             ]
           };

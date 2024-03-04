@@ -2,6 +2,7 @@
   <view>
     <uni-list v-if="weightList.length">
       <uni-list-item v-for="item in weightList" :key="item.id" :title="item.date" :right-text="item.weight" :show-arrow="true" :clickable="true" @click="onClickItem(item)"></uni-list-item>
+      <uni-load-more :status="loadMoreStatus" @click-load-more="handleLoadMore"></uni-load-more>
     </uni-list>
     <view v-else class="empty-wrapper">
       <image src="/static/common-icons/empty.png" class="empty-img" mode=""></image>
@@ -16,6 +17,10 @@
   export default {
     data() {
       return {
+        currentPage: 1,
+        pageSize: 10,
+        total: 0,
+        loadMoreStatus: 'more',
         weightList: [],
         pattern: {
           color: '#7A7E83',
@@ -51,6 +56,19 @@
         this.$refs.fab.close();
       }
     },
+    onPullDownRefresh() {
+      this.currentPage = 1;
+      this.getWeightList().finally(() => {
+        uni.stopPullDownRefresh();
+      })
+    },
+    onReachBottom() {
+      if (this.loadMoreStatus === 'more') {
+        this.loadMoreStatus = 'loading';
+        this.currentPage++;
+        this.getWeightList();
+      }
+    },
     methods: {
       onFabClick() {
         console.log('on fab click');
@@ -75,19 +93,50 @@
         });
       },
       async getWeightList() {
-        // 获取体重数据列表
-        const res = await uni.$http.post('weight/getWeights', {
-          userID: this.userInfo.userID
-        });
-        if (res && res.resultData) {
-          this.weightList = res.resultData.map(i => ({
-            id: i.id,
-            userID: i.userID,
-            date: i.weight_date,
-            weight: `${ i.weight }`
-          }));
+        try{
+          // 获取体重数据列表
+          const res = await uni.$http.post('weight/getWeights', {
+            userID: this.userInfo.userID,
+            currentPage: this.currentPage,
+            pageSize: this.pageSize
+          });
+          if (res.success) {
+            this.total = res.resultData.total;
+            if (this.currentPage === 1) {
+              this.weightList = res.resultData.list.map(i => ({
+                id: i.id,
+                userID: i.userID,
+                date: i.weight_date,
+                weight: `${ i.weight }`
+              }));
+            } else {
+              this.weightList = [...this.weightList, ...(res.resultData.list.map(i => ({
+                id: i.id,
+                userID: i.userID,
+                date: i.weight_date,
+                weight: `${ i.weight }`
+              })))];
+            }
+          }
+        }catch(e){
+          //TODO handle the exception
+        } finally {
+          if (this.total > this.currentPage * this.pageSize) {
+            this.loadMoreStatus = 'more';
+          } else {
+            this.loadMoreStatus = 'noMore';
+          }
         }
-      }
+      },
+      handleLoadMore(e) {
+        console.log('handle load more: ', e);
+        const status = e.detail.status;
+        if (status === 'more') {
+          this.loadMoreStatus = 'loading';
+          this.currentPage++;
+          this.getWeightList()
+        }
+      },
     },
   }
 </script>

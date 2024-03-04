@@ -2,6 +2,7 @@
   <view>
     <uni-list v-if="waistList.length">
       <uni-list-item v-for="item in waistList" :key="item.id" :title="item.date" :right-text="item.waist" :show-arrow="true" :clickable="true" @click="onClickItem(item)"></uni-list-item>
+      <uni-load-more :status="loadMoreStatus" @click-load-more="handleLoadMore"></uni-load-more>
     </uni-list>
     <view v-else class="empty-wrapper">
       <image src="/static/common-icons/empty.png" class="empty-img" mode=""></image>
@@ -16,6 +17,10 @@
   export default {
     data() {
       return {
+        currentPage: 1,
+        pageSize: 10,
+        total: 0,
+        loadMoreStatus: 'more',
         waistList: [],
         pattern: {
           color: '#7A7E83',
@@ -51,6 +56,19 @@
         this.$refs.fab.close();
       }
     },
+    onPullDownRefresh() {
+      this.currentPage = 1;
+      this.getWaistList().finally(() => {
+        uni.stopPullDownRefresh();
+      })
+    },
+    onReachBottom() {
+      if (this.loadMoreStatus === 'more') {
+        this.loadMoreStatus = 'loading';
+        this.currentPage++;
+        this.getWaistList();
+      }
+    },
     methods: {
       onFabClick() {
         console.log('on fab click');
@@ -75,19 +93,50 @@
         });
       },
       async getWaistList() {
-        // 获取体重数据列表
-        const res = await uni.$http.post('waist/getWaists', {
-          userID: this.userInfo.userID
-        });
-        if (res && res.resultData) {
-          this.waistList = res.resultData.map(i => ({
-            id: i.id,
-            userID: i.userID,
-            date: i.waist_date,
-            waist: `${ i.waist }`
-          }));
+        try{
+          // 获取腰围数据列表
+          const res = await uni.$http.post('waist/getWaists', {
+            userID: this.userInfo.userID,
+            currentPage: this.currentPage,
+            pageSize: this.pageSize
+          });
+          if (res.success) {
+            this.total = res.resultData.total;
+            if (this.currentPage === 1) {
+              this.waistList = res.resultData.list.map(i => ({
+                id: i.id,
+                userID: i.userID,
+                date: i.waist_date,
+                waist: `${ i.waist }`
+              }));
+            } else {
+              this.waistList = [...this.waistList, ...(res.resultData.list.map(i => ({
+                id: i.id,
+                userID: i.userID,
+                date: i.waist_date,
+                waist: `${ i.waist }`
+              })))];
+            }
+          }
+        }catch(e){
+          //TODO handle the exception
+        } finally {
+          if (this.total > this.currentPage * this.pageSize) {
+            this.loadMoreStatus = 'more';
+          } else {
+            this.loadMoreStatus = 'noMore';
+          }
         }
-      }
+      },
+      handleLoadMore(e) {
+        console.log('handle load more: ', e);
+        const status = e.detail.status;
+        if (status === 'more') {
+          this.loadMoreStatus = 'loading';
+          this.currentPage++;
+          this.getWaistList()
+        }
+      },
     },
   }
 </script>

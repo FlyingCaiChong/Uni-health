@@ -7895,14 +7895,14 @@ const subPackages = [
         path: "weight_record/weight_record",
         style: {
           navigationBarTitleText: "体重记录",
-          enablePullDownRefresh: false
+          enablePullDownRefresh: true
         }
       },
       {
         path: "waist_record/waist_record",
         style: {
           navigationBarTitleText: "腰围记录",
-          enablePullDownRefresh: false
+          enablePullDownRefresh: true
         }
       },
       {
