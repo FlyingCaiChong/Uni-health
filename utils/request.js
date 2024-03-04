@@ -41,7 +41,12 @@ const errorHandler = error => {
       return data;
     } else {
       console.log('sss', data);
-      // TODO: 处理token失效跳转到登录
+      if (data.errorCode === 401) {
+        // TODO: 处理token失效跳转到登录
+        uni.navigateTo({
+          url: '/pages/login/login'
+        })
+      }
       showToastMessage(data.errorMesssage);
       return Promise.reject(data);
     }

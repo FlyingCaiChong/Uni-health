@@ -34,6 +34,11 @@ const errorHandler = (error) => {
       return data;
     } else {
       console.log("sss", data);
+      if (data.errorCode === 401) {
+        common_vendor.index.navigateTo({
+          url: "/pages/login/login"
+        });
+      }
       showToastMessage(data.errorMesssage);
       return Promise.reject(data);
     }
