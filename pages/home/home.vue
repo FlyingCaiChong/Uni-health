@@ -18,10 +18,10 @@
       <view class="funcs-item item2 flip-in-hor-bottom fade-in" hover-class="vibrate-1" @click="gotoSportClock">
          <text class="title">运动打卡</text>
       </view>
-      <view class="funcs-item item3 flip-in-hor-bottom fade-in" hover-class="vibrate-1">
+      <view class="funcs-item item3 flip-in-hor-bottom fade-in" hover-class="vibrate-1" @click="gotoWeightRecord">
          <text class="title">体重记录</text>
       </view>
-      <view class="funcs-item item4 flip-in-hor-bottom fade-in" hover-class="vibrate-1">
+      <view class="funcs-item item4 flip-in-hor-bottom fade-in" hover-class="vibrate-1" @click="gotoWaistRecord">
          <text class="title">腰围记录</text>
       </view>
     </view>
@@ -66,6 +66,18 @@
       gotoSportClock() {
         uni.navigateTo({
           url: '/page_records/sport_clock/sport_clock'
+        })
+      },
+      
+      gotoWeightRecord() {
+        uni.navigateTo({
+          url: '/page_records/weight_record/weight_record'
+        })
+      },
+      
+      gotoWaistRecord() {
+        uni.navigateTo({
+          url: '/page_records/waist_record/waist_record'
         })
       }
     },

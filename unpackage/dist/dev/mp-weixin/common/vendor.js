@@ -7890,6 +7890,20 @@ const subPackages = [
           navigationBarTitleText: "运动打卡",
           enablePullDownRefresh: false
         }
+      },
+      {
+        path: "weight_record/weight_record",
+        style: {
+          navigationBarTitleText: "",
+          enablePullDownRefresh: false
+        }
+      },
+      {
+        path: "waist_record/waist_record",
+        style: {
+          navigationBarTitleText: "",
+          enablePullDownRefresh: false
+        }
       }
     ]
   }

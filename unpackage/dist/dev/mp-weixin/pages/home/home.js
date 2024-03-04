@@ -34,6 +34,16 @@ const _sfc_main = {
       common_vendor.index.navigateTo({
         url: "/page_records/sport_clock/sport_clock"
       });
+    },
+    gotoWeightRecord() {
+      common_vendor.index.navigateTo({
+        url: "/page_records/weight_record/weight_record"
+      });
+    },
+    gotoWaistRecord() {
+      common_vendor.index.navigateTo({
+        url: "/page_records/waist_record/waist_record"
+      });
     }
   }
 };
@@ -46,7 +56,9 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       };
     }),
     b: common_vendor.o((...args) => $options.gotoFoodRecord && $options.gotoFoodRecord(...args)),
-    c: common_vendor.o((...args) => $options.gotoSportClock && $options.gotoSportClock(...args))
+    c: common_vendor.o((...args) => $options.gotoSportClock && $options.gotoSportClock(...args)),
+    d: common_vendor.o((...args) => $options.gotoWeightRecord && $options.gotoWeightRecord(...args)),
+    e: common_vendor.o((...args) => $options.gotoWaistRecord && $options.gotoWaistRecord(...args))
   };
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "/Users/fangheng/Documents/Uniapp/uni-health/pages/home/home.vue"]]);

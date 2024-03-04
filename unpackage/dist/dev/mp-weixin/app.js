@@ -26,6 +26,8 @@ if (!Math) {
   "./page_records/food_record/food_record.js";
   "./page_records/food_add/food_add.js";
   "./page_records/sport_clock/sport_clock.js";
+  "./page_records/weight_record/weight_record.js";
+  "./page_records/waist_record/waist_record.js";
 }
 const _sfc_main = {
   onLaunch: function() {

@@ -12,7 +12,9 @@
       "pages": [
         "food_record/food_record",
         "food_add/food_add",
-        "sport_clock/sport_clock"
+        "sport_clock/sport_clock",
+        "weight_record/weight_record",
+        "waist_record/waist_record"
       ]
     }
   ],
