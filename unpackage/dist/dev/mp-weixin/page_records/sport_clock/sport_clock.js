@@ -97,7 +97,8 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     c: common_vendor.p({
       type: "flag-filled",
-      size: "20"
+      size: "20",
+      color: "#40F8FF"
     }),
     d: common_vendor.t($options.clockedNum),
     e: common_vendor.o($options.onDialogConfirm),

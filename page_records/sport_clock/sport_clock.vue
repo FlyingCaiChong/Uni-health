@@ -2,7 +2,7 @@
   <view>
     <uni-calendar :lunar="true" :showMonth="true" :selected="selected" :start-date="startDate" :end-date="endDate" @change="onChange"></uni-calendar>
     <view class="clocked-num-wrapper">
-      <uni-icons type="flag-filled" size="20"></uni-icons>
+      <uni-icons type="flag-filled" size="20" color="#40F8FF"></uni-icons>
       打卡天数: <view class="clocked-num">{{ clockedNum }}天</view>
     </view>
     <!-- 提示窗 -->
@@ -104,6 +104,7 @@
     margin-left: 10rpx;
     font-size: 20px;
     color: #333;
+    font-weight: 700;
   }
 }
 </style>
