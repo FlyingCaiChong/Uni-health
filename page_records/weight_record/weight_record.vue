@@ -18,7 +18,7 @@
     data() {
       return {
         currentPage: 1,
-        pageSize: 10,
+        pageSize: 20,
         total: 0,
         loadMoreStatus: 'more',
         weightList: [],

@@ -1,7 +1,7 @@
 <template>
   <view>
     <view class="charts-box">
-      <qiun-data-charts type="line" :chartData="chartData"></qiun-data-charts>
+      <qiun-data-charts type="line" :opts="opts" :chartData="chartData"></qiun-data-charts>
     </view>
   </view>
 </template>
@@ -12,7 +12,19 @@
   export default {
     data() {
       return {
-        chartData: {}
+        chartData: {},
+        opts: {
+          xAxis: {
+            labelCount: 6, // 数据点文字单屏幕限制显示的数量
+            rotateLabel: true, // 旋转数据点文字
+            fontColor: '#999'
+          },
+          extra: {
+            line: {
+              type: 'curve'
+            }
+          }
+        }
       };
     },
     computed: {

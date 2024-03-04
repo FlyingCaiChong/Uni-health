@@ -3,7 +3,21 @@ const common_vendor = require("../../common/vendor.js");
 const _sfc_main = {
   data() {
     return {
-      chartData: {}
+      chartData: {},
+      opts: {
+        xAxis: {
+          labelCount: 6,
+          // 数据点文字单屏幕限制显示的数量
+          rotateLabel: true,
+          // 旋转数据点文字
+          fontColor: "#999"
+        },
+        extra: {
+          line: {
+            type: "curve"
+          }
+        }
+      }
     };
   },
   computed: {
@@ -52,6 +66,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return {
     a: common_vendor.p({
       type: "line",
+      opts: $data.opts,
       chartData: $data.chartData
     })
   };
