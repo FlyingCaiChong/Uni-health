@@ -33,11 +33,12 @@
     onReady() {
       this.startDate = getDate(new Date(), -30).fullDate;
       this.endDate = getDate(new Date()).fullDate;
+    },
+    onShow() {
       this.getClocks();
     },
     methods: {
       onChange(e) {
-        console.log('on change', e);
         const { fulldate } = e;
         const found = this.selected.find(i => i.date === fulldate);
         if (found) {
@@ -52,7 +53,6 @@
       async onDialogConfirm() {
         // 1. 调用接口
         await this.addClocks();
-        console.log('数据', this.selected);
       },
       onDialogClose() {
         console.log('关闭对话框')
@@ -78,7 +78,6 @@
           const res = await uni.$http.post('sports/getClocks', {
             userID: this.userInfo.userID
           });
-          console.log('get clocks', res);
           if (res.resultData) {
             this.selected = res.resultData.map(i => ({
               date: i.clock_date,
