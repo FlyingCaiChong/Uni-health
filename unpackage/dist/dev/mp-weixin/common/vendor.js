@@ -7918,6 +7918,20 @@ const subPackages = [
           navigationBarTitleText: "体重统计",
           enablePullDownRefresh: false
         }
+      },
+      {
+        path: "waist_add/waist_add",
+        style: {
+          navigationBarTitleText: "添加腰围",
+          enablePullDownRefresh: false
+        }
+      },
+      {
+        path: "waist_statistics/waist_statistics",
+        style: {
+          navigationBarTitleText: "腰围统计",
+          enablePullDownRefresh: false
+        }
       }
     ]
   }

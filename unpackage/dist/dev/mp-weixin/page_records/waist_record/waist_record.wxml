@@ -1,1 +1,1 @@
-<view> 腰围记录开发中... </view>
+<view><uni-list wx:if="{{a}}" u-s="{{['d']}}" u-i="11906cde-0" bind:__l="__l"><uni-list-item wx:for="{{b}}" wx:for-item="item" wx:key="a" bindclick="{{item.b}}" u-i="{{item.c}}" bind:__l="__l" u-p="{{item.d}}"></uni-list-item></uni-list><view wx:else class="empty-wrapper"><image src="/static/common-icons/empty.png" class="empty-img" mode=""></image></view><uni-fab wx:if="{{f}}" class="r" u-r="fab" bindfabClick="{{d}}" bindtrigger="{{e}}" u-i="11906cde-2" bind:__l="__l" u-p="{{f}}"></uni-fab></view>

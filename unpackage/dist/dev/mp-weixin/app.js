@@ -30,6 +30,8 @@ if (!Math) {
   "./page_records/waist_record/waist_record.js";
   "./page_records/weight_add/weight_add.js";
   "./page_records/weight_statistics/weight_statistics.js";
+  "./page_records/waist_add/waist_add.js";
+  "./page_records/waist_statistics/waist_statistics.js";
 }
 const _sfc_main = {
   onLaunch: function() {

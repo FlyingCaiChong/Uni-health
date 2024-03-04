@@ -16,7 +16,9 @@
         "weight_record/weight_record",
         "waist_record/waist_record",
         "weight_add/weight_add",
-        "weight_statistics/weight_statistics"
+        "weight_statistics/weight_statistics",
+        "waist_add/waist_add",
+        "waist_statistics/waist_statistics"
       ]
     }
   ],
