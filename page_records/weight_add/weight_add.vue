@@ -2,7 +2,7 @@
   <view class="form-wrapper">
     <uni-forms ref="form" :rules="rules" :modelValue="formData">
       <uni-forms-item label="日期" name="date">
-        <uni-datetime-picker type="date" v-model="formData.date"></uni-datetime-picker>
+        <uni-datetime-picker :disabled='formData.dateDisabled' type="date" v-model="formData.date"></uni-datetime-picker>
       </uni-forms-item>
       <uni-forms-item label="体重" name="weight">
         <uni-easyinput type="digit" v-model="formData.weight" placeholder="请输入体重"></uni-easyinput>
@@ -20,7 +20,8 @@
       return {
         formData: {
           date: '',
-          weight: ''
+          weight: '',
+          dateDisabled: false
         },
         rules: {
           date: {
@@ -35,11 +36,23 @@
     computed: {
       ...mapState('m_user', ['userInfo']),
     },
+    onLoad(option) {
+      console.log('option', option);
+      if (option.item) {
+        const item = JSON.parse(decodeURIComponent(option.item));
+        console.log('item', item);
+        this.formData = {...item, dateDisabled: true};
+      }
+    },
     methods: {
       submit() {
         this.$refs.form.validate().then(res => {
           console.log('表单数据信息: ', res, this.formData);
-          this.addWeight();
+          if (this.formData.userID) {
+            this.updateWeight();
+          } else {
+            this.addWeight();
+          }
         }).catch(err => {
           console.log('表单错误信息: ', err);
         })
@@ -48,6 +61,18 @@
         try{
           const res = await uni.$http.post('weight/addWeight', {
             userID: this.userInfo.userID,
+            date: this.formData.date,
+            weight: this.formData.weight
+          });
+          uni.navigateBack();
+        }catch(e){
+          //TODO handle the exception
+        }
+      },
+      async updateWeight() {
+        try{
+          const res = await uni.$http.post('weight/updateWeight', {
+            userID: this.formData.userID,
             date: this.formData.date,
             weight: this.formData.weight
           });

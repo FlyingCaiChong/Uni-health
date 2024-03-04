@@ -1,7 +1,7 @@
 <template>
   <view>
     <uni-list v-if="weightList.length">
-      <uni-list-item v-for="item in weightList" :key="item.id" :title="item.date" :right-text="item.weight" :show-arrow="true" :clickable="true"></uni-list-item>
+      <uni-list-item v-for="item in weightList" :key="item.id" :title="item.date" :right-text="item.weight" :show-arrow="true" :clickable="true" @click="onClickItem(item)"></uni-list-item>
     </uni-list>
     <view v-else class="empty-wrapper">
       <image src="/static/common-icons/empty.png" class="empty-img" mode=""></image>
@@ -39,6 +39,12 @@
           url: '/page_records/weight_add/weight_add'
         });
       },
+      onClickItem(item) {
+        console.log('on click item', item);
+        uni.navigateTo({
+          url: `/page_records/weight_add/weight_add?item=${encodeURIComponent(JSON.stringify(item))}`
+        });
+      },
       async getWeightList() {
         // 获取体重数据列表
         const res = await uni.$http.post('weight/getWeights', {
@@ -47,6 +53,7 @@
         if (res && res.resultData) {
           this.weightList = res.resultData.map(i => ({
             id: i.id,
+            userID: i.userID,
             date: i.weight_date,
             weight: `${ i.weight }`
           }));

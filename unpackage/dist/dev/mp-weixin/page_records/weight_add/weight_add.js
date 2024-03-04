@@ -5,7 +5,8 @@ const _sfc_main = {
     return {
       formData: {
         date: "",
-        weight: ""
+        weight: "",
+        dateDisabled: false
       },
       rules: {
         date: {
@@ -20,11 +21,23 @@ const _sfc_main = {
   computed: {
     ...common_vendor.mapState("m_user", ["userInfo"])
   },
+  onLoad(option) {
+    console.log("option", option);
+    if (option.item) {
+      const item = JSON.parse(decodeURIComponent(option.item));
+      console.log("item", item);
+      this.formData = { ...item, dateDisabled: true };
+    }
+  },
   methods: {
     submit() {
       this.$refs.form.validate().then((res) => {
         console.log("表单数据信息: ", res, this.formData);
-        this.addWeight();
+        if (this.formData.userID) {
+          this.updateWeight();
+        } else {
+          this.addWeight();
+        }
       }).catch((err) => {
         console.log("表单错误信息: ", err);
       });
@@ -33,6 +46,17 @@ const _sfc_main = {
       try {
         const res = await common_vendor.index.$http.post("weight/addWeight", {
           userID: this.userInfo.userID,
+          date: this.formData.date,
+          weight: this.formData.weight
+        });
+        common_vendor.index.navigateBack();
+      } catch (e) {
+      }
+    },
+    async updateWeight() {
+      try {
+        const res = await common_vendor.index.$http.post("weight/updateWeight", {
+          userID: this.formData.userID,
           date: this.formData.date,
           weight: this.formData.weight
         });
@@ -60,6 +84,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return {
     a: common_vendor.o(($event) => $data.formData.date = $event),
     b: common_vendor.p({
+      disabled: $data.formData.dateDisabled,
       type: "date",
       modelValue: $data.formData.date
     }),

@@ -26,6 +26,12 @@ const _sfc_main = {
         url: "/page_records/weight_add/weight_add"
       });
     },
+    onClickItem(item) {
+      console.log("on click item", item);
+      common_vendor.index.navigateTo({
+        url: `/page_records/weight_add/weight_add?item=${encodeURIComponent(JSON.stringify(item))}`
+      });
+    },
     async getWeightList() {
       const res = await common_vendor.index.$http.post("weight/getWeights", {
         userID: this.userInfo.userID
@@ -33,6 +39,7 @@ const _sfc_main = {
       if (res && res.resultData) {
         this.weightList = res.resultData.map((i) => ({
           id: i.id,
+          userID: i.userID,
           date: i.weight_date,
           weight: `${i.weight}`
         }));
@@ -59,8 +66,9 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     b: common_vendor.f($data.weightList, (item, k0, i0) => {
       return {
         a: item.id,
-        b: "874196e0-1-" + i0 + ",874196e0-0",
-        c: common_vendor.p({
+        b: common_vendor.o(($event) => $options.onClickItem(item), item.id),
+        c: "874196e0-1-" + i0 + ",874196e0-0",
+        d: common_vendor.p({
           title: item.date,
           ["right-text"]: item.weight,
           ["show-arrow"]: true,
