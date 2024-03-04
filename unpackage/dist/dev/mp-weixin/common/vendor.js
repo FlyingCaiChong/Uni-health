@@ -7911,6 +7911,13 @@ const subPackages = [
           navigationBarTitleText: "添加体重",
           enablePullDownRefresh: false
         }
+      },
+      {
+        path: "weight_statistics/weight_statistics",
+        style: {
+          navigationBarTitleText: "体重统计",
+          enablePullDownRefresh: false
+        }
       }
     ]
   }

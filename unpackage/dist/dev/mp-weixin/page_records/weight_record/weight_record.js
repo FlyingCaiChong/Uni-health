@@ -10,7 +10,21 @@ const _sfc_main = {
         selectedColor: "#F0B86E",
         buttonColor: "#F0B86E",
         iconColor: "#fff"
-      }
+      },
+      content: [
+        {
+          iconPath: "/static/common-icons/add.png",
+          selectedIconPath: "/static/common-icons/add_active.png",
+          text: "添加",
+          active: true
+        },
+        {
+          iconPath: "/static/common-icons/chart.png",
+          selectedIconPath: "/static/common-icons/chart_active.png",
+          text: "统计",
+          active: true
+        }
+      ]
     };
   },
   computed: {
@@ -19,12 +33,26 @@ const _sfc_main = {
   onShow() {
     this.getWeightList();
   },
+  onHide() {
+    if (this.$refs.fab.isShow) {
+      this.$refs.fab.close();
+    }
+  },
   methods: {
     onFabClick() {
       console.log("on fab click");
-      common_vendor.index.navigateTo({
-        url: "/page_records/weight_add/weight_add"
-      });
+    },
+    onTrigger(e) {
+      console.log(e);
+      if (e.item.text === "添加") {
+        common_vendor.index.navigateTo({
+          url: "/page_records/weight_add/weight_add"
+        });
+      } else if (e.item.text === "统计") {
+        common_vendor.index.navigateTo({
+          url: "/page_records/weight_statistics/weight_statistics"
+        });
+      }
     },
     onClickItem(item) {
       console.log("on click item", item);
@@ -77,9 +105,12 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       };
     })
   } : {}, {
-    c: common_vendor.o($options.onFabClick),
-    d: common_vendor.p({
+    c: common_vendor.sr("fab", "874196e0-2"),
+    d: common_vendor.o($options.onFabClick),
+    e: common_vendor.o($options.onTrigger),
+    f: common_vendor.p({
       pattern: $data.pattern,
+      content: $data.content,
       horizontal: "left",
       vertical: "bottom"
     })

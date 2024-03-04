@@ -6,7 +6,7 @@
     <view v-else class="empty-wrapper">
       <image src="/static/common-icons/empty.png" class="empty-img" mode=""></image>
     </view>
-    <uni-fab :pattern="pattern"	horizontal="left" vertical="bottom" @fabClick="onFabClick"></uni-fab>
+    <uni-fab ref="fab" :pattern="pattern" :content="content"	horizontal="left" vertical="bottom" @fabClick="onFabClick" @trigger="onTrigger"></uni-fab>
   </view>
 </template>
 
@@ -24,6 +24,20 @@
           buttonColor: '#F0B86E',
           iconColor: '#fff'
         },
+        content: [
+          {
+            iconPath: '/static/common-icons/add.png',
+            selectedIconPath: '/static/common-icons/add_active.png',
+            text: '添加',
+            active: true
+          },
+          {
+            iconPath: '/static/common-icons/chart.png',
+            selectedIconPath: '/static/common-icons/chart_active.png',
+            text: '统计',
+            active: true
+          }
+        ]
       };
     },
     computed: {
@@ -32,12 +46,27 @@
     onShow() {
       this.getWeightList();
     },
+    onHide() {
+      if (this.$refs.fab.isShow) {
+        this.$refs.fab.close();
+      }
+    },
     methods: {
       onFabClick() {
         console.log('on fab click');
-        uni.navigateTo({
-          url: '/page_records/weight_add/weight_add'
-        });
+      },
+      onTrigger(e) {
+        console.log(e);
+        // this.content[e.index].active = !e.item.active;
+        if (e.item.text === '添加') {
+          uni.navigateTo({
+            url: '/page_records/weight_add/weight_add'
+          });
+        } else if (e.item.text === '统计') {
+          uni.navigateTo({
+            url: '/page_records/weight_statistics/weight_statistics'
+          });
+        }
       },
       onClickItem(item) {
         console.log('on click item', item);
