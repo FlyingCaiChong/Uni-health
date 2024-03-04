@@ -1,0 +1,8 @@
+/* 水平间距 */
+/* 水平间距 */
+.form-wrapper {
+  margin: 0 20rpx;
+}
+.form-wrapper .form-btn {
+  margin: 30rpx 30rpx;
+}

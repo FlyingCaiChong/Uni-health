@@ -28,6 +28,7 @@ if (!Math) {
   "./page_records/sport_clock/sport_clock.js";
   "./page_records/weight_record/weight_record.js";
   "./page_records/waist_record/waist_record.js";
+  "./page_records/weight_add/weight_add.js";
 }
 const _sfc_main = {
   onLaunch: function() {
